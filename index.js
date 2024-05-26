@@ -4,6 +4,7 @@ import db from "./database/db.js";
 import ClienteRoutes from "./routes/ClienteRoutes.js";
 import ProductoRoutes from "./routes/ProductoRoutes.js";
 
+const port = 2004;
 const app = express();
 
 app.use(cors());
@@ -28,6 +29,6 @@ try {
 }
 
 //ejecucion del servidor local([necesario] para hacer las consultas tanto locales como de la nube)
-app.listen(4000, () => {
-  console.log("server-local funcionando en http://localhost:4000");
+app.listen(port, () => {
+  console.log(`server-local funcionando en http://localhost:${port}`);
 });
