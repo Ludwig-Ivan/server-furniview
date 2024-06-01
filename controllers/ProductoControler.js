@@ -1,6 +1,6 @@
 import ProductoModel from "../models/ProductoModel.js";
 
-//Agregar un nuevo producto
+//* Agregar un nuevo producto
 export const createProducto = async (req, res) => {
   try {
     await ProductoModel.create(req.body);
@@ -10,7 +10,7 @@ export const createProducto = async (req, res) => {
   }
 };
 
-//Ver todos los productos
+//* Ver todos los productos
 export const getAllProductos = async (req, res) => {
   try {
     const productos = await ProductoModel.findAll();
@@ -20,7 +20,7 @@ export const getAllProductos = async (req, res) => {
   }
 };
 
-//Ver mis productos
+//* Ver mis productos
 export const getMyProductos = async (req, res) => {
   try {
     const productos = await ProductoModel.findAll({
@@ -32,7 +32,7 @@ export const getMyProductos = async (req, res) => {
   }
 };
 
-//Modificar mis productos
+//* Modificar mis productos
 export const updateMyProductos = async (req, res) => {
   try {
     await ProductoModel.update(req.body, {
@@ -44,7 +44,7 @@ export const updateMyProductos = async (req, res) => {
   }
 };
 
-//Ver un producto
+//* Ver un producto
 export const getOneProducto = async (req, res) => {
   try {
     const producto = await ProductoModel.findOne({
@@ -56,7 +56,7 @@ export const getOneProducto = async (req, res) => {
   }
 };
 
-//Eliminar un producto
+//* Eliminar un producto
 export const deleteProducto = async (req, res) => {
   try {
     await ProductoModel.destroy({
@@ -68,11 +68,23 @@ export const deleteProducto = async (req, res) => {
   }
 };
 
-//Obtener producto por categoria
+//* Obtener producto por categoria
 export const getCatProducto = async (req, res) => {
   try {
     const productos = await ProductoModel.findAll({
       where: { categoria: req.params.categoria },
+    });
+    res.json(productos);
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
+//* Obtiene una lista de productos con el mismo nombre
+export const getNameProducto = async (req, res) => {
+  try {
+    const productos = await ProductoModel.findAll({
+      where: { nombre: req.params.nombre },
     });
     res.json(productos);
   } catch (error) {
